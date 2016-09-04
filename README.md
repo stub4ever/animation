@@ -1,2 +1,2 @@
-### Learning PlainJs & Jquery
+### Learning CSS Animation
 
