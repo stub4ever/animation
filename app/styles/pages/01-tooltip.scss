@@ -1,0 +1,152 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+em {
+    font-style: initial;
+}
+
+// ========================================================
+// Components
+// ========================================================
+
+// Wrapper
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    display: table;
+    background: #363537;
+}
+
+// Container
+.container__center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+// Btn
+$btn-height: 40px;
+$btn-width: 140px;
+$btn-line-height: $btn-height;
+$btn-top-transition: top .3s;
+
+%btn-download--scaling {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+.btn-download {
+    position: relative;
+    background-color: #0CCE6B;
+    box-shadow: 0 1px 10px rgba(0,0,0,.05), inset 0 1px 0 rgba(255,255,255, .2);
+    display: inline-block;
+    width: $btn-width;
+    height: $btn-height;
+    line-height: $btn-line-height;
+    border-radius: 50em;
+    color: white;
+    font-weight: 600;
+
+    // #1 Style Tooltip Element block before
+    &::before {
+        content: 'Files Size: 50M';
+        position: absolute;
+        width: $btn-width;
+        height: $btn-height;
+        line-height: $btn-line-height;
+        background: #2E1C2B;
+        border-radius: .25em;
+        bottom: 70px;
+        left: calc(50% - 70px);
+    }
+
+    // #2 Show Triangle Downside element after
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top-color: #2E1C2B;
+        left: calc(50% - 10px);
+        bottom: 51px;
+    }
+
+    // By default hide Tooltip + triangle pseudo element
+    &::before, &::after {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .3s;
+    }
+
+    &:hover, &:focus {
+        text-decoration: none;
+        color: white;
+
+        // When hover hide text
+        .btn-download__text--trigger {
+            top: -100%;
+        }
+
+        // When hover show icon
+        .btn-download__icon {
+            top: 0;
+        }
+
+        // When hover show Tooltip
+        &::before, &::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        // When hover Animate tooltip -> move down
+        &::before {
+            bottom: 60px;
+        }
+        &:after {
+            bottom: 41px;
+        }
+    }
+}
+
+    // Set outside the button element hidden
+    .btn-download--overside-hidden {
+        overflow: hidden;  // uncomment => display both childeren
+        @extend %btn-download--scaling;
+    }
+
+        // By default show text
+        .btn-download__text--trigger {
+            top: 0;
+            transition: $btn-top-transition;
+            @extend %btn-download--scaling;
+        }
+
+        // by default hide => overside hidden
+        .btn-download__icon {
+            top: 100%;
+            background: url("../images/icon-download.svg") no-repeat center center;
+            transition: $btn-top-transition;
+            @extend %btn-download--scaling;
+        }
+
+
+
+
+
