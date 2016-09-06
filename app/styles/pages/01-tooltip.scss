@@ -44,10 +44,8 @@ $btn-line-height: $btn-height;
 $btn-top-transition: top .3s;
 
 %btn-download--scaling {
-    position: absolute;
     width: 100%;
     height: 100%;
-    left: 0;
 }
 
 .btn-download {
@@ -127,20 +125,24 @@ $btn-top-transition: top .3s;
 
     // Set outside the button element hidden
     .btn-download--overside-hidden {
+        position: absolute;
+        top: 0; left: 0;
         overflow: hidden;  // uncomment => display both childeren
         @extend %btn-download--scaling;
     }
 
         // By default show text
         .btn-download__text--trigger {
-            top: 0;
+            position: absolute;
+            top: 0; left: 0;
             transition: $btn-top-transition;
             @extend %btn-download--scaling;
         }
 
         // by default hide => overside hidden
         .btn-download__icon {
-            top: 100%;
+            position: absolute;
+            top: 100%; left: 0;
             background: url("../images/icon-download.svg") no-repeat center center;
             transition: $btn-top-transition;
             @extend %btn-download--scaling;
