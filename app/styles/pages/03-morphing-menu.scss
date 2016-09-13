@@ -1,0 +1,145 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+em {
+    font-style: initial;
+}
+
+body {
+    height: 100%;
+}
+
+
+// ========================================================
+// LAYOUTS
+// ========================================================
+
+.container {
+    height: calc(100% - 90.5px);
+}
+
+    .container__center-center {
+        @extend .container;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+// ========================================================
+// HELPER
+// ========================================================
+
+.replace-text {
+    overflow: hidden;
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+
+    &:hover,
+    &:active {
+        color: transparent;
+    }
+}
+
+// ========================================================
+// Components
+// ========================================================
+.menu-trigger {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #444;
+    width: 120px;
+    height: 120px;
+    border: none;
+    border-radius: 50%;
+
+    /* img replace for text */
+    @extend .replace-text;
+    cursor: pointer;
+}
+
+.menu-trigger {
+
+    // add middle line
+    .line,
+    .line::before,
+    .line::after {
+        position: absolute;
+        width: 44px;
+        height: 4px;
+        background: white;
+        border-radius: 4px;
+    }
+
+    .line {
+        top: calc(50% - 2px);
+        left: calc(50% - 22px);
+        transition: transform .3s;
+    }
+
+    .line::before,
+    .line::after {
+        content: '';
+        left: 0;
+        transition: transform .3s, width .3s;
+    }
+
+    // add top line
+    .line::before {
+        bottom: 12px;
+    }
+
+    // add bottom line
+    .line::after {
+        top: 12px;
+    }
+
+    // Hover to arrow
+    &:hover {
+        // Rotate 180deg
+        .line {
+            transform: rotate(180deg);
+        }
+
+        // take bottom line
+        .line::before {
+            width: 50%; // make like 50%
+            transform: translateX(-2px) translateY(5px) rotate(-45deg);
+        }
+
+        // take bottom line
+        .line::after {
+            width: 50%; // make like 50%
+            transform: translateX(-2px) translateY(-5px) rotate(45deg);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
