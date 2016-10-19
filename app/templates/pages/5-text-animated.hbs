@@ -1,0 +1,31 @@
+---
+title: 05 - Text Animated
+url: 5-text-animated.html
+---
+
+<div class="container__center-center">
+    <h1 class="heading-animated">
+        <span>I am</span>
+        <span class="words-wrapper">
+            <b class="word-visible"><i>d</i><i>e</i><i>v</i><i>e</i><i>l</i><i>o</i><i>p</i><i>e</i><i>r</i></b>
+            <b><i>d</i><i>e</i><i>s</i><i>i</i><i>g</i><i>n</i><i>e</i><i>r</i></b>
+            <b><i>e</i><i>x</i><i>p</i><i>l</i><i>o</i><i>r</i><i>e</i><i>r</i></b>
+        </span>
+    </h1>
+</div>
+
+
+<script>
+    var intervalId = setInterval(function(){
+        var visibleWord = document.querySelector('.word-visible'),
+            nextWord = visibleWord.nextElementSibling;
+
+        if( nextWord ) {    // if there is an nextword excute
+            visibleWord.setAttribute('class', 'word-hidden');
+            nextWord.setAttribute('class', 'word-visible');
+        } else {
+            clearInterval(intervalId); // else end this function -> when use interval it need an clear
+        }
+    }, 4000);
+</script>
+

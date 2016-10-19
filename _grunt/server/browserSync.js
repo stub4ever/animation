@@ -24,7 +24,8 @@ module.exports.tasks = {
             options: {
                 files: [
                     '<%=config.tempDir%>/{,*/}*.html',
-                    '<%=config.css.tempDir%>/{,*/}*.css',
+                    '<%=config.css.tempDir%>/<%=config.css.tempDevConcatFile%>',
+                    '<%=config.css.tempDir%>/<%=config.css.tempVendorConcatFile%>',
                     '<%=config.img.srcDir%>/{,*/}*',
                     '<%=config.js.tempDir%>/{,*/}*.js'
                 ],

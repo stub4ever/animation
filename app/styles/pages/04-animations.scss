@@ -1,0 +1,106 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+em {
+    font-style: initial;
+}
+
+body {
+    height: 100%;
+}
+
+
+// ========================================================
+// LAYOUTS
+// ========================================================
+
+.container {
+    height: calc(100% - 90.5px);
+}
+
+    .container__center-center {
+        @extend .container;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+// ========================================================
+// HELPER
+// ========================================================
+
+.replace-text {
+    overflow: hidden;
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+
+    &:hover,
+    &:active {
+        color: transparent;
+    }
+}
+
+// ========================================================
+// Components
+// ========================================================
+
+.block-1 {
+    &:hover {
+
+        .block-1__red {
+            // animation: scale-up 2s; // shortcut;
+            animation-name: scale-up;
+            animation-duration: 2s; // animate scale-up with 2s duration
+            // animation-delay: 1s; // it trigger 1s later
+            // animation-timing-function: ; // define acceleration of the animation over a cycle
+            animation-iteration-count: 1; // play it once or infinite
+            animation-direction: alternate; // player every 2,4,6 reverse scaling animation
+            // animation-play-state: paused; // use to play or pauze -> set it on hover
+        }
+    }
+}
+
+    .block-1__red {
+        display: block;
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        cursor: pointer;
+    }
+
+
+@keyframes scale-up {
+    0%, 5% { // specify the first value the beginning of our animation
+        transform: scale(0);
+    }
+
+    // 5% {
+    //     transform: scale(0);
+    // }
+
+    50% {  // take 1s
+        transform: scale(2);
+        background-color: white;
+    }
+
+    100% { // end state of animaion -> within 2s
+        transform: scale(1);
+    }
+}
+

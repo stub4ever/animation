@@ -16,7 +16,7 @@ module.exports.tasks = {
             interrupt: true,
         },
         html: {
-            files: ['<%=config.srcDir%>/{,*/}*.html'],
+            files: ['<%=config.distDir%>/{,*/}*.html'],
         },
         templates: {
             files: ['<%=config.tpl.srcDir%>/**/*.hbs', '<%=config.tpl.srcDir%>/{,*/}*.json'],

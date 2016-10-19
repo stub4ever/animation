@@ -1,0 +1,290 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+.menu-trigger {
+    border-radius: 0;
+}
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+
+// ========================================================
+// Components
+// ========================================================
+
+// Wrapper
+.wrapper {
+    height: 100%;
+    width: 100%;
+    background-color: #33312E;
+}
+
+// Main content
+
+.page-content {
+    position: relative;
+    z-index: 1;
+    height: 100vh; //cover entire vieuwport
+    overflow: auto; // hidden; // => every element bewteens this content wont display
+    box-shadow: 0 0 50px black; // set x 0 y 0, 50px blur(big),
+    transition: transform .5s ease-in-out; // transition for scale down
+}
+
+// If the menu is open add scale down
+.menu-open .page-content {
+    transform: scale(.8);
+}
+
+// content
+
+.content {
+    color: white;
+    margin: 100px auto;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+// ========================================================
+// HERO
+// ========================================================
+
+.hero-intro {
+    height: 100vh;
+    width: 100%;
+    display: table;
+    background: #26292f url('/images/bg.jpg') no-repeat center center;
+    background-size: cover;
+
+    h1 {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 45px;
+        color: white;
+    }
+}
+
+
+// ========================================================
+// MENU-TRIGGER
+// ========================================================
+
+.menu-trigger {
+    position: fixed;
+    z-index: 4;
+    top: 120px;
+    right: 40px;
+    height: 44px;
+    width: 44px;
+    background-color: transparent;
+    // background-color: black; // able to see the height of block
+
+    // by default remove text
+    overflow: hidden;
+    color: transparent;
+    white-space: nowrap;
+    text-indent: 100%;
+
+    // hover state
+    &:active,
+    &:focus,
+    &:hover {
+        color: transparent;
+
+        .menu-icon,
+        .menu-icon::before,
+        .menu-icon::after {
+            background-color: white;
+        }
+    }
+}
+
+// Initalize menu icon styling
+
+/*span*/.menu-icon,
+/*span*/.menu-icon::after,
+/*span*/.menu-icon::before,{
+    position: absolute;
+    height: 4px;
+    width: 36px;
+    background-color: #999999;
+}
+
+/*span*/.menu-icon {
+    // center postion line
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color .2s;
+
+    // Set default pseudo element on the top
+    &::before,
+    &::after {
+        content: '';
+        top: 0;
+        left: 0;
+        transition: background-color .3s, transform .3s;
+    }
+
+    // first line top
+    &::before {
+        transform: translateY(-12px);
+    }
+    // last line bottom
+    &::after {
+        transform: translateY(12px);
+    }
+}
+
+
+// Menu open
+.menu-open .menu-trigger {
+
+    /*span*/.menu-icon {
+        // when nav is open remove middle line
+        background-color: transparent;
+
+        // rotate first line deg
+        &::before {
+            transform: rotate(-45deg);
+        }
+
+        // rotate last line deg
+        &::after {
+            transform: rotate(45deg);
+        }
+
+        // when nav-trigger is clicked give menu-icon an color
+        &::before,
+        &::after {
+            background-color: #1F2B39;
+        }
+    }
+}
+
+
+// ========================================================
+// OVERLAY
+// ========================================================
+
+.overlay {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #33312E;
+
+    // by default invisible
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+}
+
+.menu-open .overlay {
+    opacity: 0.4;
+    visibility: visible;
+}
+
+// ========================================================
+// MENU-PANEL
+// ========================================================
+
+.menu-panel {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 90%;
+    max-width: 450px;
+    padding: 7em 3.5em;
+    background-color: #FBFBFB;
+    overflow: auto; // when reach over height 100% add itself an auto scroll
+    transform: translateZ(0);// improve hardware acceleration => ! set this before X or you might overwhite the X-axis
+    transform: translateX(100%); // Set by default the panel outside the viewport => moving right equal full width
+    transition: transform 0.5s cubic-bezier(.07,.23,.34,1);
+}
+
+.menu-open .menu-panel {
+    transform: translateX(0);
+}
+
+
+    .menu-panel h2 {
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #DB5461;
+        margin: 1.5em 0;
+    }
+
+
+    .menu-panel-nav {
+        list-style-type: none;
+        padding: 0;
+    }
+
+
+        .menu-panel-nav a {
+            display: block;
+            padding: .4em 0;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: serif;
+            color: #8AA29E;
+            // improve hardware acceleration by setting Z at 0 only when the element itself animating 3d or when you can improve
+            transform: translateZ(0);
+        }
+
+
+        .menu-open .menu-panel-nav a {
+            animation: slideIn .4s .2s backwards; // name, duration, delay, fill-mode
+        }
+
+        $total-links:  5;
+        //Set each letter duration
+        @for $i from 1 through $total-links {
+
+            .menu-open .menu-panel-nav li:nth-of-type(#{$i}) a {
+                animation-delay: $i *.1s;
+            }
+        }
+
+
+
+// ========================================================
+// ANIMATION
+// ========================================================
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(80px); // startpoint on 80px;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); // endpoint
+    }
+
+}
+
+
+
+
+
+
+
+
+

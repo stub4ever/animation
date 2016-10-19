@@ -37,7 +37,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: scale(2, 2);// scale multiply by 2 =>  transform: scale(x, y)
+            background: transparent;
+
+            .block {
+                transform: scale(2, 2);// scale multiply by 2 =>  transform: scale(x, y)
+            }
         }
     }
 
@@ -45,7 +49,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: scaleY(2);
+            background: transparent;
+
+            .block {
+                transform: scaleY(2);
+            }
         }
     }
 
@@ -53,7 +61,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: scaleX(2);
+            background: transparent;
+
+            .block {
+                transform: scaleX(2);
+            }
         }
     }
 
@@ -65,7 +77,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: translate(80px); // move default right
+            background: transparent;
+
+            .block {
+                transform: translate(80px); // move default right
+            }
         }
     }
 
@@ -73,7 +89,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: translateX(-80px); // move default right
+            background: transparent;
+
+            .block {
+                transform: translateX(-80px); // move default right
+            }
         }
     }
 
@@ -81,7 +101,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: translateY(80px); // move default right
+            background: transparent;
+
+            .block {
+                transform: translateY(80px); // move default right
+            }
         }
     }
 
@@ -89,7 +113,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: translate(80px, 50%);
+            background: transparent;
+
+            .block {
+                transform: translate(80px, 50%);
+            }
         }
     }
 
@@ -101,7 +129,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: rotate(45deg);
+            background: transparent;
+
+            .block {
+                transform: rotate(45deg);
+            }
         }
     }
 
@@ -114,7 +146,11 @@ em {
         @extend .block;
 
         &:hover {
-            transform: skew(30deg);
+            background: transparent;
+
+            .block {
+                transform: skew(30deg);
+            }
         }
     }
 

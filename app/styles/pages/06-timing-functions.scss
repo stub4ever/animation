@@ -1,0 +1,132 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+em {
+    font-style: initial;
+}
+
+body {
+    height: 100%;
+}
+
+
+// ========================================================
+// LAYOUTS
+// ========================================================
+
+.container {
+    height: calc(100% - 90.5px);
+}
+
+    .container__center-center {
+        @extend .container;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+// ========================================================
+// HELPER
+// ========================================================
+
+.replace-text {
+    overflow: hidden;
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+
+    &:hover,
+    &:active {
+        color: transparent;
+    }
+}
+
+// ========================================================
+// Components
+// ========================================================
+
+// TIMING-FUNCTIONS => Control the acceleration of an animation.
+// SPEED UP + SLOW DOWN the animation + transition
+
+// cubic-bezier.com
+
+// x-axis (horizontal) = timing
+// y-axis (vertical) = progression (start/ending css value)
+
+.init-block {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.timing-block {
+    @extend .init-block;
+    background: black;
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: 20%;
+    animation: moveDown 3s;
+    // anitmation-timing-function: ease-in-out; // ease value as an curve
+}
+
+@keyframes moveDown {
+    0% {
+        animation-timing-function: cubic-bezier(.32,.82,.49,.86);// create own timing-function
+        bottom: 20%
+    }
+
+    50% {
+        animation-timing-function: cubic-bezier(.89,.02,.44,.44);// create own timing-function
+        bottom: 80%;
+    }
+
+    100% {
+        animation-timing-function: cubic-bezier();// create own timing-function
+        bottom: 20%;
+    }
+}
+
+.transition-block {
+    @extend .init-block;
+    background: #d3d3d3;
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: 50%;
+    transition: transform .6s;
+    transition-timing-function: cubic-bezier(.32,.82,.44,1.13);// create own timing-function
+
+    &:hover {
+        transform: scale(2);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

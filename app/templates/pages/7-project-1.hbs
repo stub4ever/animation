@@ -1,0 +1,54 @@
+---
+title: 07 - Project 1
+url: 7-project-1.html
+---
+
+
+<a href="#navigation" class="menu-trigger">
+    Menu <span class="menu-icon"></span>
+</a>
+
+<div class="wrapper">
+    <main class="page-content">
+        <section class="hero-intro">
+            <h1>Project 1</h1>
+        </section>
+        <section class="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus similique quia vitae consequatur laboriosam, odit, ratione possimus aliquam. Placeat corporis impedit itaque voluptate asperiores illum dolores accusamus eius harum!</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus similique quia vitae consequatur laboriosam, odit, ratione possimus aliquam. Placeat corporis impedit itaque voluptate asperiores illum dolores accusamus eius harum!</p>
+        </section>
+    </main>
+</div>
+
+<nav class="menu-panel" id="navigation">
+    <header>
+        <h2>Navigation</h2>
+    </header>
+
+    <ul class="menu-panel-nav">
+        <li><a href="#0">About</a></li>
+        <li><a href="#0">Services</a></li>
+        <li><a href="#0">Portofolio</a></li>
+        <li><a href="#0">Clients</a></li>
+        <li><a href="#0">Contact</a></li>
+    </ul>
+</nav>
+<div class="overlay"></div><!-- improve main element 3d movement -->
+
+<script>
+    var navTrigger = document.getElementsByClassName('menu-trigger')[0], //take only first element of array
+        body = document.getElementsByTagName('body')[0];
+
+        navTrigger.addEventListener('click', toggleNavigation);
+
+        // when click on menu-trigger => execute this function
+        function toggleNavigation(event) {
+            event.preventDefault(); // not changing the url
+            body.classList.toggle('menu-open');
+        }
+
+</script>
+
+
+

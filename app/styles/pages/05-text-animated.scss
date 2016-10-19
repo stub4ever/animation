@@ -1,0 +1,158 @@
+// ========================================================
+
+// # Tooltip
+
+// ========================================================
+
+// ========================================================
+// Base
+// ========================================================
+
+a {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+em {
+    font-style: initial;
+}
+
+body {
+    height: 100%;
+}
+
+
+// ========================================================
+// LAYOUTS
+// ========================================================
+
+.container {
+    height: calc(100% - 90.5px);
+}
+
+    .container__center-center {
+        @extend .container;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+// ========================================================
+// HELPER
+// ========================================================
+
+.replace-text {
+    overflow: hidden;
+    text-indent: 100%;
+    color: transparent;
+    white-space: nowrap;
+
+    &:hover,
+    &:active {
+        color: transparent;
+    }
+}
+
+// ========================================================
+// Components
+// ========================================================
+
+.heading-animated {
+    font-size: 60px;
+    font-weight: 300;
+    color: #c1c1c1;
+}
+
+.words-wrapper {
+    position: relative;
+    color: #D16666;
+}
+
+    .words-wrapper b {
+        font-weight: 300;
+
+        // set by default all words start on same-line
+        position: absolute;
+        left: 0;
+        white-space: nowrap; // no letter whitespace
+
+
+        &.word-visible {
+            position: relative; // push itself on the flow of document
+
+            // display word animation
+            i {
+                opacity: 1;
+                transform: scale(1);
+                animation-name: scaleUp; //name of animation
+            }
+        }
+
+
+        // hidden word animation
+        &.word-hidden {
+
+            i {
+                animation-name: scaleDown;
+            }
+        }
+    }
+
+
+    .words-wrapper i {
+        font-style: normal; // change italic
+        display: inline-block;
+
+        // by default hiding all leters
+        opacity: 0;
+        transform: scale(0);
+        animation-duration: .6s; // default it will take duration on hidden + visible classes
+        animation-fill-mode: backwards; // execute after each letter animation
+    }
+
+        $total-letters:  9;
+
+        //Set each letter duration
+        @for $i from 1 through $total-letters {
+
+            .words-wrapper i:nth-of-type(#{$i}) {
+                animation-delay: $i *.05s;
+            }
+        }
+
+
+
+// ========================================================
+// ANIMATION
+// ========================================================
+
+@keyframes scaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    60% {
+        transform: scale(1.2); // scale
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
